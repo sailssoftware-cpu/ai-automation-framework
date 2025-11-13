@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building Enterprise-Grade Automation Frameworks with AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --background-color: #ffffff;
+      --surface-color: #f8fafc;
+      --text-color: #064a70;
+      --primary-action-color: #00b9ff;
+      --secondary-action-color: #064a70;
+      --font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+      --font-size: 16px;
+    }
+    body {
+      font-family: var(--font-family);
+      box-sizing: border-box;
+      background: linear-gradient(to bottom right, var(--background-color), var(--primary-action-color)15);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    #root {
+      flex-grow: 1;
+    }
+    h1, h2, h3, h4 {
+      color: var(--text-color);
+    }
+    p, li span, td, th, ul li, ol li {
+      color: var(--text-color);
+    }
+    .text-primary-accent {
+      color: var(--primary-action-color);
+    }
+    .bg-primary-accent-light {
+      background-color: var(--primary-action-color)20;
+    }
+    .text-secondary-accent {
+      color: var(--secondary-action-color);
+    }
+    .bg-secondary-accent-light {
+      background-color: var(--secondary-action-color)20;
+    }
+
+    /* Override tailwind default colors based on theme variables */
+    .text-slate-900 { color: var(--text-color); }
+    .text-slate-700 { color: var(--text-color); }
+    .text-slate-600 { color: var(--text-color); }
+    .text-slate-500 { color: var(--text-color); }
+    .text-blue-700 { color: var(--primary-action-color); }
+    .text-purple-700 { color: var(--secondary-action-color); }
+    .text-red-700 { color: #dc2626; /* Keep red for errors */ }
+    .bg-red-100 { background-color: #fee2e2; }
+    .border-red-300 { border-color: #fca5a5; }
+
+    .bg-blue-100 { background-color: var(--primary-action-color)20; }
+    .bg-purple-100 { background-color: var(--secondary-action-color)20; }
+
+    .bg-slate-50 { background-color: var(--surface-color); }
+    .border-slate-200 { border-color: var(--text-color)20; }
+    .border-slate-300 { border-color: var(--text-color)30; }
+    .bg-white { background-color: var(--background-color); }
+
+    /* Specific section gradients adjusted for theme */
+    .section-gradient-default,
+    .section-gradient-primary-accent,
+    .section-gradient-secondary-accent,
+    .section-gradient-emerald,
+    .section-gradient-violet,
+    .section-gradient-yellow {
+      background: linear-gradient(to bottom right, var(--primary-action-color)10, var(--secondary-action-color)10);
+      border-color: var(--primary-action-color)40;
+    }
+    .section-gradient-conclusion {
+      background: linear-gradient(to bottom right, #0F172A, #1E3A8A); /* Original dark colors */
+      border-color: #334155; /* Original border */
+    }
+  </style>
+
+<link rel="stylesheet" href="/index.css">
+ <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.1"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/ai-automation-framework/assets/index-D4g4MphZ.js"></script>
+</head>
+ <body class="min-h-full bg-white">
+  <div id="root"></div>
+  <script>
+    const defaultConfig = {
+      background_color: "#ffffff",
+      surface_color: "#f8fafc",
+      text_color: "#064a70",
+      primary_action_color: "#00b9ff",
+      secondary_action_color: "#064a70",
+      font_family: "Poppins",
+      font_size: 16,
+      // blog_title: "Building Enterprise-Grade Automation Frameworks with AI: From Vision to Reality", // Removed
+      intro_heading: "Introduction: The Journey Begins",
+      challenge_heading: "The Challenge: The Traditional Approach",
+      turning_point_heading: "The Turning Point: Structured AI-Assisted Development",
+      achievement_1_heading: "Achievement #1: 70% Reduction in Development Time",
+      achievement_2_heading: "Achievement #2: Superior Code Quality and Robustness",
+      achievement_3_heading: "Achievement #3: 100% Code Consistency Across Teams",
+      achievement_4_heading: "Achievement #4: Intelligent Problem Resolution",
+      conclusion_heading: "Conclusion: The New Standard",
+      footer_text: "Ready to transform your automation framework development? Start with comprehensive documentation and let AI amplify your team's capabilities."
+    };
+
+    async function onConfigChange(config) {
+      document.documentElement.style.setProperty('--background-color', config.background_color || defaultConfig.background_color);
+      document.documentElement.style.setProperty('--surface-color', config.surface_color || defaultConfig.surface_color);
+      document.documentElement.style.setProperty('--text-color', config.text_color || defaultConfig.text_color);
+      document.documentElement.style.setProperty('--primary-action-color', config.primary_action_color || defaultConfig.primary_action_color);
+      document.documentElement.style.setProperty('--secondary-action-color', config.secondary_action_color || defaultConfig.secondary_action_color);
+      document.documentElement.style.setProperty('--font-family', `'${config.font_family || defaultConfig.font_family}', system-ui, -apple-system, sans-serif`);
+      document.documentElement.style.setProperty('--font-size', `${config.font_size || defaultConfig.font_size}px`);
+
+      const baseFontSize = config.font_size || defaultConfig.font_size;
+      // Removed H1 font size update
+      document.querySelectorAll('h2').forEach(h => h.style.fontSize = `${baseFontSize * 1.875}px`);
+      document.querySelectorAll('h3').forEach(h => h.style.fontSize = `${baseFontSize * 1.5}px`);
+      document.querySelectorAll('h4').forEach(h => h.style.fontSize = `${baseFontSize * 1.25}px`);
+      document.querySelectorAll('p, li span, td, th, ul li, ol li').forEach(el => el.style.fontSize = `${baseFontSize * 1.125}px`);
+
+
+      // document.querySelector('h1').textContent = config.blog_title || defaultConfig.blog_title; // Removed
+      const h2Elements = document.querySelectorAll('h2');
+      if (h2Elements[0]) h2Elements[0].textContent = config.intro_heading || defaultConfig.intro_heading;
+      if (h2Elements[1]) h2Elements[1].textContent = config.challenge_heading || defaultConfig.challenge_heading;
+      if (h2Elements[2]) h2Elements[2].textContent = config.turning_point_heading || defaultConfig.turning_point_heading;
+      const h3Elements = document.querySelectorAll('h3');
+      if (h3Elements[0]) h3Elements[0].textContent = config.achievement_1_heading || defaultConfig.achievement_1_heading;
+      if (h3Elements[1]) h3Elements[1].textContent = config.achievement_2_heading || defaultConfig.achievement_2_heading;
+      if (h3Elements[2]) h3Elements[2].textContent = config.achievement_3_heading || defaultConfig.achievement_3_heading;
+      if (h3Elements[3]) h3Elements[3].textContent = config.achievement_4_heading || defaultConfig.achievement_4_heading;
+      
+      const conclusionSection = document.querySelector('.section-gradient-conclusion');
+      if (conclusionSection) {
+        conclusionSection.querySelector('h2').textContent = config.conclusion_heading || defaultConfig.conclusion_heading;
+      }
+      
+      document.querySelector('footer p.text-slate-600').textContent = config.footer_text || defaultConfig.footer_text;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              config.primary_action_color = value;
+              window.elementSdk.setConfig({ primary_action_color: value });
+            }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => {
+              config.secondary_action_color = value;
+              window.elementSdk.setConfig({ secondary_action_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        // ["blog_title", config.blog_title || defaultConfig.blog_title], // Removed
+        ["intro_heading", config.intro_heading || defaultConfig.intro_heading],
+        ["challenge_heading", config.challenge_heading || defaultConfig.challenge_heading],
+        ["turning_point_heading", config.turning_point_heading || defaultConfig.turning_point_heading],
+        ["achievement_1_heading", config.achievement_1_heading || defaultConfig.achievement_1_heading],
+        ["achievement_2_heading", config.achievement_2_heading || defaultConfig.achievement_2_heading],
+        ["achievement_3_heading", config.achievement_3_heading || defaultConfig.achievement_3_heading],
+        ["achievement_4_heading", config.achievement_4_heading || defaultConfig.achievement_4_heading],
+        ["conclusion_heading", config.conclusion_heading || defaultConfig.conclusion_heading],
+        ["footer_text", config.footer_text || defaultConfig.footer_text]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+</body>
+</html>
